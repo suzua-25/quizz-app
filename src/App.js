@@ -230,7 +230,8 @@ export default function QuizApp() {
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
-      alert(`お疲れさまでした！\n正解数: ${score.correct + (selectedAnswer === currentQuiz[currentQuestionIndex].correctAnswer ? 1 : 0)} / ${currentQuiz.length}`);
+      // score.correctは既にcheckAnswer()でカウント済みなので、そのまま使用
+      alert(`お疲れさまでした！\n正解数: ${score.correct} / ${currentQuiz.length}`);
       setCurrentQuiz(null);
     }
   };
@@ -261,7 +262,7 @@ export default function QuizApp() {
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
             <div className="text-center mb-6 sm:mb-8">
               <Lock className="mx-auto mb-3 sm:mb-4 text-indigo-600" size={40} />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800">先生モード ログイン</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800">講師 ログイン</h2>
               <p className="text-sm sm:text-base text-gray-500 mt-2">ユーザー名とパスワードを入力してください👮</p>
             </div>
 
