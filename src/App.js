@@ -273,7 +273,7 @@ export default function QuizApp() {
                   value={loginUsername}
                   onChange={(e) => setLoginUsername(e.target.value)}
                   className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:outline-none"
-                  placeholder="teacher"
+                  placeholder="ユーザー名を入力"
                 />
               </div>
 
