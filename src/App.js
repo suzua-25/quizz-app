@@ -256,13 +256,13 @@ export default function QuizApp() {
 
   if (mode === 'teacher-login') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-8 flex items-center justify-center">
         <div className="max-w-md w-full">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="text-center mb-8">
-              <Lock className="mx-auto mb-4 text-indigo-600" size={48} />
-              <h2 className="text-2xl font-bold text-gray-800">先生モード ログイン</h2>
-              <p className="text-gray-500 mt-2">ユーザー名とパスワードを入力してください👮</p>
+          <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+            <div className="text-center mb-6 sm:mb-8">
+              <Lock className="mx-auto mb-3 sm:mb-4 text-indigo-600" size={40} />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800">先生モード ログイン</h2>
+              <p className="text-sm sm:text-base text-gray-500 mt-2">ユーザー名とパスワードを入力してください👮</p>
             </div>
 
             <div className="space-y-4">
@@ -314,29 +314,30 @@ export default function QuizApp() {
     const isCorrect = selectedAnswer === question.correctAnswer;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 lg:p-8">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="flex justify-between items-center mb-6">
-              <div className="text-sm text-gray-500">
+          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <div className="text-xs sm:text-sm text-gray-500">
                 問題 {currentQuestionIndex + 1} / {currentQuiz.length}
               </div>
-              <div className="text-sm font-semibold text-indigo-600">
+              <div className="text-xs sm:text-sm font-semibold text-indigo-600">
                 正解数: {score.correct} / {score.total}
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-800 mb-8">
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 lg:mb-8">
               Q{currentQuestionIndex + 1}. {question.question}
             </h2>
 
-            <div className="space-y-4 mb-8">
+            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
               {question.options.map((option) => (
                 <button
                   key={option.letter}
                   onClick={() => !showResult && setSelectedAnswer(option.letter)}
                   disabled={showResult}
-                  className={`w-full p-4 text-left rounded-xl border-2 transition-all ${selectedAnswer === option.letter
+                  className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border-2 transition-all ${selectedAnswer === option.letter
                     ? showResult
                       ? option.letter === question.correctAnswer
                         ? 'border-green-500 bg-green-50'
@@ -354,7 +355,7 @@ export default function QuizApp() {
             </div>
 
             {showResult && (
-              <div className={`p-6 rounded-xl mb-6 ${isCorrect ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
+              <div className={`p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 text-sm sm:text-base ${isCorrect ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
                 <div className="flex items-center mb-3">
                   {isCorrect ? (
                     <CheckCircle className="text-green-600 mr-2" size={24} />
@@ -374,20 +375,20 @@ export default function QuizApp() {
               </div>
             )}
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               {!showResult ? (
                 <>
                   <button
                     onClick={checkAnswer}
-                    className="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                    className="flex-1 bg-indigo-600 text-white py-2.5 sm:py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-colors text-sm sm:text-base"
                   >
                     OK（答え合わせ）
                   </button>
                   <button
                     onClick={backToTop}
-                    className="px-6 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
+                    className="sm:px-6 bg-gray-100 text-gray-700 py-2.5 sm:py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors text-sm sm:text-base"
                   >
-                    <Home className="inline mr-1" size={18} />
+                    <Home className="inline mr-1" size={16} />
                     TOPへ
                   </button>
                 </>
@@ -416,14 +417,15 @@ export default function QuizApp() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-indigo-500 to-blue-400 p-10 text-white">
+          <div className="bg-gradient-to-r from-indigo-500 to-blue-400 p-6 sm:p-8 lg:p-10 text-white">
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-3xl font-bold text-white-100 mb-6">理解度チェックテストアプリ</h1>
-                <p className="text-white-100">授業の復習を簡単に</p>
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white-100 mb-3 sm:mb-4 lg:mb-6">理解度チェックテスト</h1>
+                <p className="text-sm sm:text-base text-white-100">授業の復習にご活用くださいませ🙌
+                </p>
               </div>
               {isTeacherLoggedIn && mode === 'teacher' && (
                 <button
@@ -436,48 +438,53 @@ export default function QuizApp() {
             </div>
           </div>
 
-          <div className="p-10">
-            <div className="flex gap-5 mb-10">
+          <div className="p-4 sm:p-6 lg:p-10">
+
+            <div className="flex gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-8 lg:mb-10">
               <button
                 onClick={() => setMode('student')}
-                className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-colors ${mode === 'student'
+                className={`flex-1 py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
                   ? 'bg-blue-400 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
               >
-                <BookOpen className="inline mr-2" size={30} />
-                生徒モード
+                <BookOpen className="inline mr-1 sm:mr-2" size={20} />
+                <span className="hidden xs:inline">生徒モード</span>
+                <span className="inline xs:hidden">生徒</span>
               </button>
+
+
               <button
                 onClick={switchToTeacherMode}
-                className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-colors ${mode === 'teacher'
+                className={`flex-1 py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'teacher'
                   ? 'bg-indigo-600 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
               >
-                <Plus className="inline mr-2" size={30} />
-                先生モード
+                <Plus className="inline mr-1 sm:mr-2" size={20} />
+                <span className="hidden xs:inline">講師ログイン</span>
+                <span className="inline xs:hidden">講師</span>
               </button>
             </div>
 
             {mode === 'student' ? (
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-12">クイズに挑戦する🐱🐾</h2>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-6 sm:mb-8 lg:mb-12">クイズに挑戦する🐱🐾</h2>
 
                 {Object.keys(quizzes).length === 0 ? (
-                  <div className="text-center py-12 text-gray-500">
-                    <List size={48} className="mx-auto mb-10 text-gray-300" />
-                    <p>まだクイズが登録されていません👷✖</p>
+                  <div className="text-center py-8 sm:py-12 text-gray-500">
+                    <List size={36} className="mx-auto mb-4 sm:mb-10 text-gray-300" />
+                    <p className="text-sm sm:text-base">まだクイズが登録されていません👷✖</p>
                   </div>
                 ) : (
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-5">
+                    <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-3 sm:mb-5">
                       ▼復習したい授業の日付を選択してください
                     </label>
                     <select
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
-                      className="w-full p-3 border-2 border-gray-200 rounded-xl mb-7 focus:border-blue-300 focus:outline-none"
+                      className="w-full p-2 sm:p-3 border-2 border-gray-200 rounded-xl mb-4 sm:mb-7 focus:border-blue-300 focus:outline-none text-sm sm:text-base"
                     >
                       <option value="">日付を選んでください</option>
                       {Object.keys(quizzes).sort().reverse().map(date => (
@@ -490,7 +497,7 @@ export default function QuizApp() {
                     <button
                       onClick={startQuiz}
                       disabled={!selectedDate}
-                      className="w-full bg-orange-300 text-white py-5 rounded-xl font-semibold hover:bg-orange-400 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="w-full bg-orange-300 text-white py-3 sm:py-4 lg:py-5 rounded-xl font-semibold hover:bg-orange-400 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed text-sm sm:text-base"
                     >
                       クイズを開始
                     </button>
@@ -499,10 +506,10 @@ export default function QuizApp() {
               </div>
             ) : (
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">クイズを作成</h2>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">クイズを作成</h2>
 
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  <Calendar className="inline mr-2" size={16} />
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                  <Calendar className="inline mr-2" size={14} />
                   日付
                 </label>
                 <input
@@ -510,29 +517,29 @@ export default function QuizApp() {
                   value={quizDate}
                   onChange={(e) => setQuizDate(e.target.value)}
                   max={getTodayDate()}
-                  className="w-full p-3 border-2 border-gray-200 rounded-xl mb-6 focus:border-indigo-500 focus:outline-none"
+                  className="w-full p-2 sm:p-3 border-2 border-gray-200 rounded-xl mb-4 sm:mb-6 focus:border-indigo-500 focus:outline-none text-sm sm:text-base"
                 />
 
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                   問題内容（NotebookLMからコピーして貼り付け）
                 </label>
                 <textarea
                   value={quizText}
                   onChange={(e) => setQuizText(e.target.value)}
                   placeholder="【テスト】今日の理解度チェック&#10;Q1. 問題文...&#10;A. 選択肢1 B. 選択肢2...&#10;【正解】: A&#10;【解説】: 説明文..."
-                  className="w-full h-64 p-4 border-2 border-gray-200 rounded-xl mb-6 focus:border-indigo-500 focus:outline-none font-mono text-sm"
+                  className="w-full h-48 sm:h-56 lg:h-64 p-3 sm:p-4 border-2 border-gray-200 rounded-xl mb-4 sm:mb-6 focus:border-indigo-500 focus:outline-none font-mono text-xs sm:text-sm"
                 />
 
                 <button
                   onClick={saveQuiz}
-                  className="w-full bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                  className="w-full bg-indigo-600 text-white py-3 sm:py-4 rounded-xl font-semibold hover:bg-indigo-700 transition-colors text-sm sm:text-base"
                 >
                   クイズを保存
                 </button>
 
                 {Object.keys(quizzes).length > 0 && (
-                  <div className="mt-8 pt-8 border-t-2 border-gray-100">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4">保存済みクイズ</h3>
+                  <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t-2 border-gray-100">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">保存済みクイズ</h3>
                     <div className="space-y-2">
                       {Object.keys(quizzes).sort().reverse().map(date => (
                         <div key={date} className="p-4 bg-gray-50 rounded-lg flex justify-between items-center">
@@ -542,9 +549,9 @@ export default function QuizApp() {
                           </div>
                           <button
                             onClick={() => setDeleteConfirm(date)}
-                            className="bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+                            className="bg-red-100 hover:bg-red-200 text-red-600 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-colors flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
                           >
-                            <Trash2 size={16} />
+                            <Trash2 size={14} />
                             削除
                           </button>
                         </div>
