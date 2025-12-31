@@ -388,7 +388,7 @@ export default function QuizApp() {
                   </button>
                   <button
                     onClick={backToTop}
-                    className="sm:px-6 glass hover:bg-gray text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base"
+                    className="sm:px-6 glass hover:bg-gray-600 text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base"
                   >
                     <Home className="inline mr-1" size={16} />
                     TOPへ
