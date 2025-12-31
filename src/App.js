@@ -452,11 +452,13 @@ export default function QuizApp() {
           <div className="p-4 sm:p-6 lg:p-10">
 
             <div className="flex gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-8 lg:mb-10">
+
+              {/* 生徒モードボタン */}
               <button
                 onClick={() => setMode('student')}
                 className={`flex-1   py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
-                  ? ' bg-cyan-400/40 glass-shadow hover:glass-strong/30  text-white'
-                  : 'glass text-cyan-100 hover:bg-white/30'
+                  ? ' bg-cyan-400/40 glass-shadow hover:glass-strong/30  text-white'// アクティブ時
+                  : 'glass text-cyan-100 hover:bg-white/30'// 非アクティブ時
                   }`}
               >
                 <BookOpen className="inline mr-1 sm:mr-2" size={20} />
@@ -464,12 +466,12 @@ export default function QuizApp() {
                 <span className="inline xs:hidden">生徒</span>
               </button>
 
-
+              {/* 講師ログインボタン */}
               <button
                 onClick={switchToTeacherMode}
-                className={`flex-1 glass py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'teacher'
-                  ? 'glass hover:glass-strong/30 text-white'
-                  : 'bg-cyan-400/40 glass-shadow text-cyan-100 hover:bg-white/20'
+                className={`flex-1  py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'teacher'
+                  ? 'bg-cyan-400/40 glass-shadow hover:glass-strong/30 text-white'// アクティブ時
+                  : 'glass text-cyan-100 hover:bg-white/20'// 非アクティブ時
                   }`}
               >
                 <Lock className="inline mr-1 sm:mr-2" size={20} />

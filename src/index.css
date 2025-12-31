@@ -87,7 +87,7 @@ body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  color: gray;
+  color: white;
   transition: all 0.3s ease;
 }
 
@@ -100,7 +100,7 @@ body {
 .glass-quiz-selected {
   background: rgba(100, 200, 255, 0.4);
   border: 2px solid rgba(100, 200, 255, 0.9);
-  color: gray;
+  color: white;
   box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
 }
 
@@ -108,7 +108,7 @@ body {
 .glass-quiz-correct {
   background: rgba(34, 197, 94, 0.4);
   border: 2px solid rgba(34, 197, 94, 0.9);
-  color: gray;
+  color: white;
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
 }
 
@@ -116,7 +116,7 @@ body {
 .glass-quiz-incorrect {
   background: rgba(239, 68, 68, 0.4);
   border: 2px solid rgba(239, 68, 68, 0.9);
-  color: gray;
+  color: white;
   box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
 }
 
