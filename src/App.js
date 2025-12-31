@@ -422,9 +422,9 @@ export default function QuizApp() {
     <div className="min-h-screen  p-4 sm:p-6 lg:p-8 relative overflow-hidden">
 
       {/* 装飾的な泡 */}
-      <div className="bubble" style={{ width: '300px', height: '300px', top: '10%', left: '10%', animationDelay: '7s' }}></div>
+      <div className="bubble" style={{ width: '500px', height: '500px', top: '10%', left: '10%', animationDelay: '7s' }}></div>
       <div className="bubble" style={{ width: '700px', height: '700px', top: '50%', right: '10%', animationDelay: '10s' }}></div>
-      <div className="bubble" style={{ width: '300px', height: '300px', bottom: '30%', left: '10%', animationDelay: '12s' }}></div>
+      <div className="bubble" style={{ width: '300px', height: '300px', bottom: '30%', left: '60%', animationDelay: '12s' }}></div>
 
 
 
@@ -469,7 +469,7 @@ export default function QuizApp() {
                 onClick={switchToTeacherMode}
                 className={`flex-1 glass py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'teacher'
                   ? 'glass hover:glass-strong/30 text-white'
-                  : 'glass text-cyan-100 hover:bg-white/20'
+                  : 'bg-cyan-400/40 glass-shadow text-cyan-100 hover:bg-white/20'
                   }`}
               >
                 <Lock className="inline mr-1 sm:mr-2" size={20} />
