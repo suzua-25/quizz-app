@@ -356,6 +356,8 @@ export default function QuizApp() {
               ))}
             </div>
 
+
+            {/* 結果表示 */}
             {showResult && (
               <div className={`p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 text-sm sm:text-base ${isCorrect ? 'glass-result-correct' : 'glass-result-incorrect'
                 }`}>
