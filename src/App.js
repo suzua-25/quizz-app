@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, BookOpen, CheckCircle, XCircle, Plus, List, Home, Lock, Trash2, Sparkles, LockKeyhole, Wrench, TrendingUp, ChevronsDown, CircleChevronDown } from 'lucide-react';
+import { Calendar, BookOpen, CheckCircle, XCircle, List, Home, Lock, Trash2, Sparkles, Wrench, TrendingUp, ChevronsDown } from 'lucide-react';
 import { supabase } from './supabase';
 
 export default function QuizApp() {
@@ -338,40 +338,41 @@ export default function QuizApp() {
                   key={option.letter}
                   onClick={() => !showResult && setSelectedAnswer(option.letter)}
                   disabled={showResult}
-                  className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border-2 transition-all ${selectedAnswer === option.letter
+                  className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl transition-all font-medium ${selectedAnswer === option.letter
                     ? showResult
                       ? option.letter === question.correctAnswer
-                        ? 'border-green-500 bg-green-50'
-                        : 'border-red-500 bg-red-50'
-                      : 'border-indigo-500 bg-indigo-50'
+                        ? 'glass-quiz-correct'
+                        : 'glass-quiz-incorrect'
+                      : 'glass-quiz-selected'
                     : showResult && option.letter === question.correctAnswer
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-white/30 hover:border-gray-300'
+                      ? 'glass-quiz-correct'
+                      : 'glass-quiz-option'
                     } ${showResult ? 'cursor-default' : 'cursor-pointer'}`}
                 >
-                  <span className="font-semibold text-cyan-300 mr-3">{option.letter}.</span>
-                  {option.text}
+                  <span className="font-bold text-cyan-100 mr-3">{option.letter}.</span>
+                  <span className="text-white">{option.text}</span>
                 </button>
               ))}
             </div>
 
             {showResult && (
-              <div className={`p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 text-sm sm:text-base ${isCorrect ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
+              <div className={`p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 text-sm sm:text-base ${isCorrect ? 'glass-result-correct' : 'glass-result-incorrect'
+                }`}>
                 <div className="flex items-center mb-3">
                   {isCorrect ? (
-                    <CheckCircle className="text-green-600 mr-2" size={24} />
+                    <CheckCircle className="text-green-300 mr-2" size={24} />
                   ) : (
-                    <XCircle className="text-red-600 mr-2" size={24} />
+                    <XCircle className="text-red-300 mr-2" size={24} />
                   )}
-                  <span className={`font-bold text-lg ${isCorrect ? 'text-green-700' : 'text-red-700'}`}>
-                    {isCorrect ? '正解！' : '不正解'}
+                  <span className={`font-bold text-lg ${isCorrect ? 'text-green-100' : 'text-red-100'}`}>
+                    {isCorrect ? '✨ 正解！' : '❌ 不正解'}
                   </span>
                 </div>
-                <div className="text-cyan-100 mb-2">
-                  <span className="font-semibold">正解:</span> {question.correctAnswer}
+                <div className="text-white mb-2">
+                  <span className="font-semibold text-cyan-200">正解:</span> {question.correctAnswer}
                 </div>
-                <div className="text-cyan-100">
-                  <span className="font-semibold">解説:</span> {question.explanation}
+                <div className="text-white">
+                  <span className="font-semibold text-cyan-200">解説:</span> {question.explanation}
                 </div>
               </div>
             )}
@@ -381,13 +382,13 @@ export default function QuizApp() {
                 <>
                   <button
                     onClick={checkAnswer}
-                    className="flex-1 glass-strong hover:glass-strong/30 text-white py-2.5 sm:py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-colors text-sm sm:text-base"
+                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base hover:scale-105"
                   >
                     OK（答え合わせ）
                   </button>
                   <button
                     onClick={backToTop}
-                    className="sm:px-6 glass text-cyan-100 py-2.5 sm:py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors text-sm sm:text-base"
+                    className="sm:px-6 glass hover:bg-white/30 text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base"
                   >
                     <Home className="inline mr-1" size={16} />
                     TOPへ
@@ -397,13 +398,13 @@ export default function QuizApp() {
                 <>
                   <button
                     onClick={nextQuestion}
-                    className="flex-1 glass-strong hover:glass-strong/30 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-white py-3 rounded-xl font-semibold transition-all hover:scale-105"
                   >
                     {currentQuestionIndex < currentQuiz.length - 1 ? '次の問題へ' : '終了'}
                   </button>
                   <button
                     onClick={backToTop}
-                    className="px-6 glass text-cyan-100 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
+                    className="px-6 glass hover:bg-white/30 text-white py-3 rounded-xl font-semibold transition-all"
                   >
                     <Home className="inline mr-1" size={18} />
                     TOPへ
@@ -421,9 +422,9 @@ export default function QuizApp() {
     <div className="min-h-screen  p-4 sm:p-6 lg:p-8 relative overflow-hidden">
 
       {/* 装飾的な泡 */}
-      <div className="bubble" style={{ width: '200px', height: '200px', top: '10%', left: '10%', animationDelay: '0s' }}></div>
-      <div className="bubble" style={{ width: '300px', height: '300px', top: '50%', right: '10%', animationDelay: '3s' }}></div>
-      <div className="bubble" style={{ width: '150px', height: '150px', bottom: '20%', left: '30%', animationDelay: '6s' }}></div>
+      <div className="bubble" style={{ width: '300px', height: '300px', top: '10%', left: '10%', animationDelay: '7s' }}></div>
+      <div className="bubble" style={{ width: '700px', height: '700px', top: '50%', right: '10%', animationDelay: '10s' }}></div>
+      <div className="bubble" style={{ width: '300px', height: '300px', bottom: '30%', left: '10%', animationDelay: '12s' }}></div>
 
 
 
@@ -453,9 +454,9 @@ export default function QuizApp() {
             <div className="flex gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-8 lg:mb-10">
               <button
                 onClick={() => setMode('student')}
-                className={`flex-1  py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
-                  ? 'glass hover:glass-strong/30 text-white'
-                  : 'glass text-cyan-100 hover:bg-white/20'
+                className={`flex-1   py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
+                  ? 'glass hover:glass-strong/30  text-white'
+                  : 'glass text-cyan-100 hover:bg-white/30'
                   }`}
               >
                 <BookOpen className="inline mr-1 sm:mr-2" size={20} />
@@ -488,13 +489,13 @@ export default function QuizApp() {
                   </div>
                 ) : (
                   <div>
-                    <label className="block text-xs sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
+                    <label className="block glass text-xs sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
                       ▼復習したい授業の日付を選択してください
                     </label>
                     <select
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
-                      className="w-full p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-7 focus:border-blue-300 focus:outline-none text-sm sm:text-base"
+                      className="w-full glass p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-7 focus:border-blue-300 focus:outline-none text-sm sm:text-base"
                     >
                       <option value="">日付を選んでください</option>
                       {Object.keys(quizzes).sort().reverse().map(date => (
@@ -507,7 +508,7 @@ export default function QuizApp() {
                     <button
                       onClick={startQuiz}
                       disabled={!selectedDate}
-                      className="w-full glass-button hover:scale-105 text-white py-3 sm:py-4 lg:py-5 rounded-xl font-semibold hover:bg-cyan-400/40 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed text-sm sm:text-base"
+                      className="w-full glass hover:scale-105 text-white py-3 sm:py-4 lg:py-5 rounded-xl font-semibold hover:bg-cyan-400/40 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed text-sm sm:text-base"
                     >
                       クイズを開始
                     </button>
