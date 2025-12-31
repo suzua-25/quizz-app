@@ -351,7 +351,7 @@ export default function QuizApp() {
                     } ${showResult ? 'cursor-default' : 'cursor-pointer'}`}
                 >
                   <span className="font-bold text-cyan-100 mr-3">{option.letter}.</span>
-                  <span className="text-gray-600">{option.text}</span>
+                  <span className="text-gray-700">{option.text}</span>
                 </button>
               ))}
             </div>
@@ -383,7 +383,7 @@ export default function QuizApp() {
                 <>
                   <button
                     onClick={checkAnswer}
-                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base hover:scale-105"
+                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-gray-700 py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base hover:scale-105"
                   >
                     OK（答え合わせ）
                   </button>
