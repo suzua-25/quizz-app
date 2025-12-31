@@ -372,7 +372,7 @@ export default function QuizApp() {
                 <div className="text-white mb-2">
                   <span className="font-semibold text-cyan-200">正解:</span> {question.correctAnswer}
                 </div>
-                <div className="text-white">
+                <div className="text-gray-700">
                   <span className="font-semibold text-cyan-200">解説:</span> {question.explanation}
                 </div>
               </div>
@@ -383,7 +383,7 @@ export default function QuizApp() {
                 <>
                   <button
                     onClick={checkAnswer}
-                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-gray-700 py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base hover:scale-105"
+                    className="flex-1 glass-strong hover:bg-cyan-400/40 text-white py-2.5 sm:py-3 rounded-xl font-semibold transition-all text-sm sm:text-base hover:scale-105"
                   >
                     OK（答え合わせ）
                   </button>
