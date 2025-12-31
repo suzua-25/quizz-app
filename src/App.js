@@ -299,7 +299,7 @@ export default function QuizApp() {
 
               <button
                 onClick={() => setMode('student')}
-                className="w-full glass text-cyan-100 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
+                className="w-full glass text-cyan-100 py-3 rounded-xl font-semibold hover:bg-gray-500 transition-colors"
               >
                 キャンセル
               </button>
@@ -365,7 +365,7 @@ export default function QuizApp() {
                     <XCircle className="text-red-300 mr-2" size={24} />
                   )}
                   <span className={`font-bold text-lg ${isCorrect ? 'text-green-100' : 'text-red-100'}`}>
-                    {isCorrect ? '✨ 正解！' : '❌ 不正解'}
+                    {isCorrect ? '正解！' : '不正解'}
                   </span>
                 </div>
                 <div className="text-white mb-2">
@@ -455,7 +455,7 @@ export default function QuizApp() {
               <button
                 onClick={() => setMode('student')}
                 className={`flex-1   py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
-                  ? 'bg-cyan-400/40 hover:glass-strong/30  text-white'
+                  ? ' bg-cyan-400/40 glass-shadow hover:glass-strong/30  text-white'
                   : 'glass text-cyan-100 hover:bg-white/30'
                   }`}
               >
@@ -489,13 +489,13 @@ export default function QuizApp() {
                   </div>
                 ) : (
                   <div>
-                    <label className="block text-xs sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
-                      ▼復習したい授業の日付を選択してください
+                    <label className="block text-sm sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
+                      ▼ 復習したい授業の日付を選択してください
                     </label>
                     <select
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
-                      className="w-full glass p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-7 focus:border-blue-300 focus:outline-none text-sm sm:text-base"
+                      className="w-full glass p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-7 focus:border-blue-300 focus:outline-none text-gray-800 text-sm sm:text-base"
                     >
                       <option value="">日付を選んでください</option>
                       {Object.keys(quizzes).sort().reverse().map(date => (
@@ -528,7 +528,7 @@ export default function QuizApp() {
                   value={quizDate}
                   onChange={(e) => setQuizDate(e.target.value)}
                   max={getTodayDate()}
-                  className="w-full p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-6 focus:border-cyan-400 focus:outline-none text-sm sm:text-base"
+                  className="w-full p-2 sm:p-3 border-2 border-white/30 rounded-xl mb-4 sm:mb-6 text-gray-800focus:border-cyan-400 focus:outline-none text-sm sm:text-base"
                 />
 
                 <label className="block text-xs sm:text-sm font-semibold text-cyan-100 mb-2">
@@ -555,8 +555,8 @@ export default function QuizApp() {
                       {Object.keys(quizzes).sort().reverse().map(date => (
                         <div key={date} className="p-4 bg-gray-50 rounded-lg flex justify-between items-center">
                           <div>
-                            <span className="font-semibold text-white">{date}</span>
-                            <span className="text-cyan-200 ml-3">({quizzes[date].length}問)</span>
+                            <span className="font-semibold text-gray-800">{date}</span>
+                            <span className="text-gray-600 ml-3">({quizzes[date].length}問)</span>
                           </div>
                           <button
                             onClick={() => setDeleteConfirm(date)}
