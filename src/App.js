@@ -404,7 +404,7 @@ export default function QuizApp() {
                   </button>
                   <button
                     onClick={backToTop}
-                    className="px-6 glass hover:bg-gray-500text-white py-3 rounded-xl font-semibold transition-all"
+                    className="px-6 glass hover:bg-gray-500 text-white py-3 rounded-xl font-semibold transition-all"
                   >
                     <Home className="inline mr-1" size={18} />
                     TOPへ
