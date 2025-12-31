@@ -404,7 +404,7 @@ export default function QuizApp() {
                   </button>
                   <button
                     onClick={backToTop}
-                    className="px-6 glass hover:bg-white/30 text-white py-3 rounded-xl font-semibold transition-all"
+                    className="px-6 glass hover:bg-gray-500text-white py-3 rounded-xl font-semibold transition-all"
                   >
                     <Home className="inline mr-1" size={18} />
                     TOPへ
@@ -480,7 +480,7 @@ export default function QuizApp() {
 
             {mode === 'student' ? (
               <div>
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-6 sm:mb-8 lg:mb-12"><ChevronsDown className='inline mr-2' size={18} />クイズに挑戦する🚀</h2>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-6 sm:mb-8 lg:mb-12">クイズに挑戦する🚀</h2>
 
                 {Object.keys(quizzes).length === 0 ? (
                   <div className="text-center py-8 sm:py-12 text-cyan-200">
