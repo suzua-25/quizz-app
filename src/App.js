@@ -455,7 +455,7 @@ export default function QuizApp() {
               <button
                 onClick={() => setMode('student')}
                 className={`flex-1   py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${mode === 'student'
-                  ? 'glass hover:glass-strong/30  text-white'
+                  ? 'bg-cyan-400/40 hover:glass-strong/30  text-white'
                   : 'glass text-cyan-100 hover:bg-white/30'
                   }`}
               >
@@ -489,7 +489,7 @@ export default function QuizApp() {
                   </div>
                 ) : (
                   <div>
-                    <label className="block glass text-xs sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
+                    <label className="block text-xs sm:text-sm font-semibold text-cyan-100 mb-3 sm:mb-5">
                       ▼復習したい授業の日付を選択してください
                     </label>
                     <select

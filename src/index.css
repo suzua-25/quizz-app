@@ -74,7 +74,7 @@ body {
 
 /* クイズ画面専用のグラスモーフィズム */
 .glass-quiz-option {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -83,7 +83,7 @@ body {
 }
 
 .glass-quiz-option:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   border-color: rgba(100, 200, 255, 0.5);
 }
 
@@ -132,9 +132,6 @@ body {
 
 
 
-
-
-
 /* アニメーション用の泡 */
 @keyframes float {
 
@@ -160,6 +157,6 @@ body {
   position: absolute;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  animation: float 15s infinite;
+  animation: float 25s infinite;
   pointer-events: none;
 }
