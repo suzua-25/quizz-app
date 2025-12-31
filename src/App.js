@@ -332,6 +332,7 @@ export default function QuizApp() {
               Q{currentQuestionIndex + 1}. {question.question}
             </h2>
 
+            {/*4択問題の見た目 */}
             <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
               {question.options.map((option) => (
                 <button
@@ -350,7 +351,7 @@ export default function QuizApp() {
                     } ${showResult ? 'cursor-default' : 'cursor-pointer'}`}
                 >
                   <span className="font-bold text-cyan-100 mr-3">{option.letter}.</span>
-                  <span className="text-white">{option.text}</span>
+                  <span className="text-gray-600">{option.text}</span>
                 </button>
               ))}
             </div>
@@ -419,7 +420,7 @@ export default function QuizApp() {
   }
 
   return (
-    <div className="min-h-screen  p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+    <div className="min-h-screen  p-4 sm:p-6 lg:p-8 relative overflow-hidden flex flex-col items-center justify-center">
 
       {/* 装飾的な泡 */}
       <div className="bubble" style={{ width: '500px', height: '500px', top: '10%', left: '10%', animationDelay: '7s' }}></div>
@@ -429,7 +430,7 @@ export default function QuizApp() {
 
 
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl w-full mx-auto relative z-10 ">
         <div className="glass-strong rounded-2xl shadow-xl overflow-hidden">
           <div className="glass-strong p-6 sm:p-8 lg:p-10 text-white">
             <div className="flex justify-between items-center">
@@ -480,6 +481,9 @@ export default function QuizApp() {
               </button>
             </div>
 
+
+
+            {/* 生徒モードのタブ　*/}
             {mode === 'student' ? (
               <div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-6 sm:mb-8 lg:mb-12">クイズに挑戦する🚀</h2>
@@ -517,8 +521,11 @@ export default function QuizApp() {
                   </div>
                 )}
               </div>
+
             ) : (
+
               <div>
+                {/* 講師モードのタブ*/}
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-4 sm:mb-6">クイズを作成</h2>
 
                 <label className="block text-xs sm:text-sm font-semibold text-cyan-100 mb-2">
