@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #3a8fc8 0%, #5983da 50%, #764ba2 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* グラスモーフィズム効果 */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-shadow {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-button {
+  background: rgba(100, 200, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(100, 200, 255, 0.5);
+  outline: none;
+}
+
+
+
+
+/* クイズ画面専用のグラスモーフィズム */
+.glass-quiz-option {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.glass-quiz-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(100, 200, 255, 0.5);
+}
+
+/* 選択された選択肢 */
+.glass-quiz-selected {
+  background: rgba(100, 200, 255, 0.4);
+  border: 2px solid rgba(100, 200, 255, 0.9);
+  color: white;
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+}
+
+/* 正解の選択肢 */
+.glass-quiz-correct {
+  background: rgba(34, 197, 94, 0.4);
+  border: 2px solid rgba(34, 197, 94, 0.9);
+  color: white;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+/* 不正解の選択肢 */
+.glass-quiz-incorrect {
+  background: rgba(239, 68, 68, 0.4);
+  border: 2px solid rgba(239, 68, 68, 0.9);
+  color: white;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* 正解/不正解表示エリア */
+.glass-result-correct {
+  background: rgba(34, 197, 94, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(34, 197, 94, 0.6);
+  color: white;
+}
+
+.glass-result-incorrect {
+  background: rgba(239, 68, 68, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(239, 68, 68, 0.6);
+  color: white;
+}
+
+
+
+
+
+/* アニメーション用の泡 */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-100px) translateX(50px);
+  }
+
+  50% {
+    transform: translateY(-200px) translateX(-50px);
+  }
+
+  75% {
+    transform: translateY(-150px) translateX(100px);
+  }
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 25s infinite;
+  pointer-events: none;
+}
