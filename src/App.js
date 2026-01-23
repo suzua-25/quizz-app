@@ -135,7 +135,7 @@ export default function QuizApp() {
 
         if (options.length !== 4) {
           console.warn(
-            `Q${qNum}: 選択肢が4つ見つかりません (${options.length}個)`
+            `Q${qNum}: 選択肢が4つ見つかりません (${options.length}個)`,
           );
           continue;
         }
@@ -150,7 +150,7 @@ export default function QuizApp() {
 
         // 解説を抽出（【解説】から次のQ番号、NotebookLM、または文末まで）
         const explanationMatch = block.match(
-          /【解説】[：:]\s*(.+?)(?=(?:Q\d+\.|NotebookLM|$))/s
+          /【解説】[：:]\s*(.+?)(?=(?:Q\d+\.|NotebookLM|$))/s,
         );
         if (!explanationMatch) {
           console.warn(`Q${qNum}: 解説が見つかりません`);
@@ -160,7 +160,7 @@ export default function QuizApp() {
 
         // 解説の末尾の不要な文字を削除
         explanation = explanation
-          .replace(/[,，。]+$/, "")
+          .replace(/[,]+$/, "")
           .replace(/\s+/g, " ")
           .trim();
 
@@ -250,7 +250,7 @@ export default function QuizApp() {
     } else {
       // score.correctは既にcheckAnswer()でカウント済みなので、そのまま使用
       alert(
-        `お疲れさまでした！\n正解数: ${score.correct} / ${currentQuiz.length}`
+        `お疲れさまでした！\n正解数: ${score.correct} / ${currentQuiz.length}`,
       );
       setCurrentQuiz(null);
     }
@@ -376,8 +376,8 @@ export default function QuizApp() {
                           : "glass-quiz-incorrect"
                         : "glass-quiz-selected"
                       : showResult && option.letter === question.correctAnswer
-                      ? "glass-quiz-correct"
-                      : "glass-quiz-option"
+                        ? "glass-quiz-correct"
+                        : "glass-quiz-option"
                   } ${showResult ? "cursor-default" : "cursor-pointer"}`}
                 >
                   <span className="font-bold text-cyan-100 mr-3">
