@@ -11,7 +11,6 @@ import {
   Sparkles,
   Wrench,
   TrendingUp,
-  ChevronsDown,
 } from 'lucide-react';
 import { supabase } from './supabase';
 
