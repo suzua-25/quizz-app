@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Calendar,
   BookOpen,
@@ -12,23 +12,23 @@ import {
   Wrench,
   TrendingUp,
   ChevronsDown,
-} from "lucide-react";
-import { supabase } from "./supabase";
+} from 'lucide-react';
+import { supabase } from './supabase';
 
 export default function QuizApp() {
-  const [mode, setMode] = useState("student");
+  const [mode, setMode] = useState('student');
   const [isTeacherLoggedIn, setIsTeacherLoggedIn] = useState(false);
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const [quizzes, setQuizzes] = useState({});
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState('');
   const [currentQuiz, setCurrentQuiz] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0 });
-  const [quizDate, setQuizDate] = useState("");
-  const [quizText, setQuizText] = useState("");
+  const [quizDate, setQuizDate] = useState('');
+  const [quizText, setQuizText] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   const TEACHER_USERNAME = process.env.REACT_APP_TEACHER_USERNAME;
@@ -41,9 +41,9 @@ export default function QuizApp() {
   const loadQuizzes = async () => {
     try {
       const { data, error } = await supabase
-        .from("quizzes")
-        .select("*")
-        .order("id", { ascending: false });
+        .from('quizzes')
+        .select('*')
+        .order('id', { ascending: false });
 
       if (error) throw error;
 
@@ -53,7 +53,7 @@ export default function QuizApp() {
       });
       setQuizzes(quizData);
     } catch (error) {
-      console.log("クイズデータの読み込みエラー:", error);
+      console.log('クイズデータの読み込みエラー:', error);
     }
   };
 
@@ -63,30 +63,30 @@ export default function QuizApp() {
       loginPassword === TEACHER_PASSWORD
     ) {
       setIsTeacherLoggedIn(true);
-      setLoginUsername("");
-      setLoginPassword("");
-      setMode("teacher");
+      setLoginUsername('');
+      setLoginPassword('');
+      setMode('teacher');
     } else {
-      alert("ユーザー名またはパスワードが間違っています");
+      alert('ユーザー名またはパスワードが間違っています');
     }
   };
 
   const handleLogout = () => {
     setIsTeacherLoggedIn(false);
-    setMode("student");
+    setMode('student');
   };
 
   const deleteQuiz = async (date) => {
     try {
-      const { error } = await supabase.from("quizzes").delete().eq("id", date);
+      const { error } = await supabase.from('quizzes').delete().eq('id', date);
 
       if (error) throw error;
 
       await loadQuizzes();
       setDeleteConfirm(null);
     } catch (error) {
-      console.error("削除エラー:", error);
-      alert("削除に失敗しました");
+      console.error('削除エラー:', error);
+      alert('削除に失敗しました');
     }
   };
 
@@ -98,7 +98,7 @@ export default function QuizApp() {
 
     for (let block of questionBlocks) {
       block = block.trim();
-      if (!block.startsWith("Q")) continue;
+      if (!block.startsWith('Q')) continue;
 
       try {
         // Q番号を取得
@@ -119,19 +119,19 @@ export default function QuizApp() {
 
         // A.からB.まで
         const optionA = block.match(/A\.\s*(.+?)(?=\s+B\.)/s);
-        if (optionA) options.push({ letter: "A", text: optionA[1].trim() });
+        if (optionA) options.push({ letter: 'A', text: optionA[1].trim() });
 
         // B.からC.まで
         const optionB = block.match(/B\.\s*(.+?)(?=\s+C\.)/s);
-        if (optionB) options.push({ letter: "B", text: optionB[1].trim() });
+        if (optionB) options.push({ letter: 'B', text: optionB[1].trim() });
 
         // C.からD.まで
         const optionC = block.match(/C\.\s*(.+?)(?=\s+D\.)/s);
-        if (optionC) options.push({ letter: "C", text: optionC[1].trim() });
+        if (optionC) options.push({ letter: 'C', text: optionC[1].trim() });
 
         // D.から【正解】まで
         const optionD = block.match(/D\.\s*(.+?)(?=\s+【正解】)/s);
-        if (optionD) options.push({ letter: "D", text: optionD[1].trim() });
+        if (optionD) options.push({ letter: 'D', text: optionD[1].trim() });
 
         if (options.length !== 4) {
           console.warn(
@@ -156,12 +156,14 @@ export default function QuizApp() {
           console.warn(`Q${qNum}: 解説が見つかりません`);
           continue;
         }
-        let explanation = explanationMatch[1].trim();
+        let explanation = explanationMatch[1]
+          .replace(/\s+/g, ' ') // 空白を整理
+          .trim(); // 前後の空白を削除
 
         // 解説の末尾の不要な文字を削除
         explanation = explanation
-          .replace(/[,]+$/, "")
-          .replace(/\s+/g, " ")
+          .replace(/,+$/, '')
+          .replace(/\s+/g, ' ')
           .trim();
 
         // 問題を追加
@@ -183,19 +185,19 @@ export default function QuizApp() {
 
   const saveQuiz = async () => {
     if (!quizDate || !quizText) {
-      alert("日付と問題内容を入力してください");
+      alert('日付と問題内容を入力してください');
       return;
     }
 
     const parsedQuestions = parseQuizText(quizText);
 
     if (parsedQuestions.length === 0) {
-      alert("問題を正しく解析できませんでした");
+      alert('問題を正しく解析できませんでした');
       return;
     }
 
     try {
-      const { error } = await supabase.from("quizzes").upsert({
+      const { error } = await supabase.from('quizzes').upsert({
         id: quizDate,
         questions: parsedQuestions,
       });
@@ -203,17 +205,17 @@ export default function QuizApp() {
       if (error) throw error;
 
       await loadQuizzes();
-      setQuizText("");
+      setQuizText('');
       alert(`${parsedQuestions.length}問のクイズを保存しました！`);
     } catch (error) {
-      console.error("保存エラー:", error);
-      alert("保存に失敗しました: " + error.message);
+      console.error('保存エラー:', error);
+      alert('保存に失敗しました: ' + error.message);
     }
   };
 
   const startQuiz = () => {
     if (!selectedDate || !quizzes[selectedDate]) {
-      alert("日付を選択してください");
+      alert('日付を選択してください');
       return;
     }
     setCurrentQuiz(quizzes[selectedDate]);
@@ -225,7 +227,7 @@ export default function QuizApp() {
 
   const checkAnswer = () => {
     if (selectedAnswer === null) {
-      alert("選択肢を選んでください");
+      alert('選択肢を選んでください');
       return;
     }
     setShowResult(true);
@@ -258,24 +260,24 @@ export default function QuizApp() {
 
   const backToTop = () => {
     setCurrentQuiz(null);
-    setSelectedDate("");
+    setSelectedDate('');
     setScore({ correct: 0, total: 0 });
   };
 
   const getTodayDate = () => {
     const today = new Date();
-    return today.toISOString().split("T")[0];
+    return today.toISOString().split('T')[0];
   };
 
   const switchToTeacherMode = () => {
     if (!isTeacherLoggedIn) {
-      setMode("teacher-login");
+      setMode('teacher-login');
     } else {
-      setMode("teacher");
+      setMode('teacher');
     }
   };
 
-  if (mode === "teacher-login") {
+  if (mode === 'teacher-login') {
     return (
       <div className="min-h-screen bg-gradient-to-br p-4 sm:p-8 flex items-center justify-center">
         <div className="max-w-md w-full">
@@ -312,7 +314,7 @@ export default function QuizApp() {
                   type="password"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleLogin()}
+                  onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                   className="w-full p-3 border-2 border-white/30 rounded-xl focus:border-cyan-400 focus:outline-none"
                   placeholder="パスワードを入力"
                 />
@@ -326,7 +328,7 @@ export default function QuizApp() {
               </button>
 
               <button
-                onClick={() => setMode("student")}
+                onClick={() => setMode('student')}
                 className="w-full glass text-cyan-100 py-3 rounded-xl font-semibold hover:bg-gray-500 transition-colors"
               >
                 キャンセル
@@ -372,13 +374,13 @@ export default function QuizApp() {
                     selectedAnswer === option.letter
                       ? showResult
                         ? option.letter === question.correctAnswer
-                          ? "glass-quiz-correct"
-                          : "glass-quiz-incorrect"
-                        : "glass-quiz-selected"
+                          ? 'glass-quiz-correct'
+                          : 'glass-quiz-incorrect'
+                        : 'glass-quiz-selected'
                       : showResult && option.letter === question.correctAnswer
-                        ? "glass-quiz-correct"
-                        : "glass-quiz-option"
-                  } ${showResult ? "cursor-default" : "cursor-pointer"}`}
+                        ? 'glass-quiz-correct'
+                        : 'glass-quiz-option'
+                  } ${showResult ? 'cursor-default' : 'cursor-pointer'}`}
                 >
                   <span className="font-bold text-cyan-100 mr-3">
                     {option.letter}.
@@ -392,7 +394,7 @@ export default function QuizApp() {
             {showResult && (
               <div
                 className={`p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 text-sm sm:text-base ${
-                  isCorrect ? "glass-result-correct" : "glass-result-incorrect"
+                  isCorrect ? 'glass-result-correct' : 'glass-result-incorrect'
                 }`}
               >
                 <div className="flex items-center mb-3">
@@ -403,18 +405,18 @@ export default function QuizApp() {
                   )}
                   <span
                     className={`font-bold text-lg ${
-                      isCorrect ? "text-green-100" : "text-red-100"
+                      isCorrect ? 'text-green-100' : 'text-red-100'
                     }`}
                   >
-                    {isCorrect ? "正解！" : "不正解"}
+                    {isCorrect ? '正解！' : '不正解'}
                   </span>
                 </div>
                 <div className="text-white mb-2">
-                  <span className="font-semibold text-cyan-200">正解:</span>{" "}
+                  <span className="font-semibold text-cyan-200">正解:</span>{' '}
                   {question.correctAnswer}
                 </div>
                 <div className="text-gray-700">
-                  <span className="font-semibold text-cyan-200">解説:</span>{" "}
+                  <span className="font-semibold text-cyan-200">解説:</span>{' '}
                   {question.explanation}
                 </div>
               </div>
@@ -444,8 +446,8 @@ export default function QuizApp() {
                     className="flex-1 glass-strong hover:bg-cyan-400/40 text-white py-3 rounded-xl font-semibold transition-all hover:scale-105"
                   >
                     {currentQuestionIndex < currentQuiz.length - 1
-                      ? "次の問題へ"
-                      : "終了"}
+                      ? '次の問題へ'
+                      : '終了'}
                   </button>
                   <button
                     onClick={backToTop}
@@ -469,31 +471,31 @@ export default function QuizApp() {
       <div
         className="bubble"
         style={{
-          width: "500px",
-          height: "500px",
-          top: "10%",
-          left: "10%",
-          animationDelay: "7s",
+          width: '500px',
+          height: '500px',
+          top: '10%',
+          left: '10%',
+          animationDelay: '7s',
         }}
       ></div>
       <div
         className="bubble"
         style={{
-          width: "700px",
-          height: "700px",
-          top: "50%",
-          right: "10%",
-          animationDelay: "10s",
+          width: '700px',
+          height: '700px',
+          top: '50%',
+          right: '10%',
+          animationDelay: '10s',
         }}
       ></div>
       <div
         className="bubble"
         style={{
-          width: "300px",
-          height: "300px",
-          bottom: "30%",
-          left: "60%",
-          animationDelay: "12s",
+          width: '300px',
+          height: '300px',
+          bottom: '30%',
+          left: '60%',
+          animationDelay: '12s',
         }}
       ></div>
 
@@ -511,7 +513,7 @@ export default function QuizApp() {
                   <Sparkles className="inline mr-1 sm:mr-2" size={18} />
                 </p>
               </div>
-              {isTeacherLoggedIn && mode === "teacher" && (
+              {isTeacherLoggedIn && mode === 'teacher' && (
                 <button
                   onClick={handleLogout}
                   className="bg-gradient-to-r from-indigo-200 to-blue-200 hover:glass-strong/30 text-white px-4 py-2 rounded-lg transition-colors"
@@ -526,11 +528,11 @@ export default function QuizApp() {
             <div className="flex gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-8 lg:mb-10">
               {/* 生徒モードボタン */}
               <button
-                onClick={() => setMode("student")}
+                onClick={() => setMode('student')}
                 className={`flex-1   py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${
-                  mode === "student"
-                    ? " bg-cyan-400/40 glass-shadow hover:glass-strong/30  text-white" // アクティブ時
-                    : "glass text-cyan-100 hover:bg-white/30" // 非アクティブ時
+                  mode === 'student'
+                    ? ' bg-cyan-400/40 glass-shadow hover:glass-strong/30  text-white' // アクティブ時
+                    : 'glass text-cyan-100 hover:bg-white/30' // 非アクティブ時
                 }`}
               >
                 <BookOpen className="inline mr-1 sm:mr-2" size={20} />
@@ -542,9 +544,9 @@ export default function QuizApp() {
               <button
                 onClick={switchToTeacherMode}
                 className={`flex-1  py-2 sm:py-2.5 lg:py-3 px-3 sm:px-4 lg:px-6 rounded-xl font-semibold transition-colors text-sm sm:text-base ${
-                  mode === "teacher"
-                    ? "bg-cyan-400/40 glass-shadow hover:glass-strong/30 text-white" // アクティブ時
-                    : "glass text-cyan-100 hover:bg-white/20" // 非アクティブ時
+                  mode === 'teacher'
+                    ? 'bg-cyan-400/40 glass-shadow hover:glass-strong/30 text-white' // アクティブ時
+                    : 'glass text-cyan-100 hover:bg-white/20' // 非アクティブ時
                 }`}
               >
                 <Lock className="inline mr-1 sm:mr-2" size={20} />
@@ -554,7 +556,7 @@ export default function QuizApp() {
             </div>
 
             {/* 生徒モードのタブ　*/}
-            {mode === "student" ? (
+            {mode === 'student' ? (
               <div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-6 sm:mb-8 lg:mb-12">
                   クイズに挑戦する🚀
